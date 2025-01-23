@@ -15,7 +15,7 @@ Sebelum memulai, pastikan Anda sudah memiliki hal-hal berikut:
 Clone repositori ini ke mesin lokal Anda:
 
 ```bash
-git clone https://github.com/username/book-api.git
+git clone https://github.com/notfound313/crud-book-api.git
 
 ```
 
