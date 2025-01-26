@@ -1,7 +1,7 @@
-import { DataTypes } from "sequelize"
-import sequelize from "../config/db.js" 
+import { DataTypes } from "sequelize";
+import sequelize from "../../config/db.js";
 
-const Book = sequelize.define('books', {
+const Book = sequelize.define("books", {
   id: {
     type: DataTypes.UUID,
     defaultValue: DataTypes.UUIDV4,
@@ -38,7 +38,5 @@ const Book = sequelize.define('books', {
     defaultValue: DataTypes.NOW,
   },
 });
-
-
 
 export default Book;

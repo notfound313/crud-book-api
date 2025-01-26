@@ -2,7 +2,7 @@ import BookRepository from "../repositories/bookRepository.js";
 import Zodvalidator from "../validations/ZodValidator.js";
 import BookValidation from "../validations/bookValidation.js";
 
-export default class bookService {
+export default class BookService {
   static async getBookById(id){
     return await BookRepository.getBookById(id)
   }
