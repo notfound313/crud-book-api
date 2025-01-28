@@ -3,6 +3,7 @@ import "dotenv/config";
 import bodyParser from "body-parser";
 import bookRoutes from "./routes/bookRoutes.js";
 import userRoutes from "./routes/userRoutes.js";
+import authRoutes from "./routes/authRoutes.js";
 import sequelize from "../config/db.js";
 import errorMiddleware from "./middlewares/ErrorMiddleware.js";
 
@@ -12,6 +13,7 @@ const port = process.env.PORT;
 app.use(bodyParser.json());
 app.use(bookRoutes);
 app.use(userRoutes);
+app.use(authRoutes);
 app.use(errorMiddleware);
 
 sequelize.sync({ force: false }).then(() => {

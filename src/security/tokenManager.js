@@ -2,19 +2,23 @@ import Jwt from "jsonwebtoken";
 
 export default class TokenManager {
     static generateAccessToken(id){
-        return Jwt.sign(id, process.env.ACCESS_TOKEN_KEY, { expiresIn: '15m' })
+        const payload = { id }
+        return  Jwt.sign(payload, process.env.ACCESS_TOKEN_KEY, { expiresIn: '15m' })
     }
-    static generateRefreshToken(token){
-        return Jwt.sign(token, process.env.REFRESH_TOKEN_KEY )
+    static generateRefreshToken(id){
+        const payload = { id }
+        return Jwt.sign(payload, process.env.REFRESH_TOKEN_KEY )
     }
-    static verifyAccessToken(token) {
+    static verifyAccessToken(token) {        
         return Jwt.verify(token, process.env.ACCESS_TOKEN_KEY);
       }
     static verifyRefresToken(token){
         try {
-            const artifacts  = Jwt.decode(token)
-            Jwt.verify(artifacts, process.env.REFRESH_TOKEN_KEY)
-            return artifacts
+            const { id }  = Jwt.decode(token)
+            console.log(id)
+            Jwt.verify(token, process.env.REFRESH_TOKEN_KEY)
+           
+            return id
             
         }catch(error){
             throw new Error(error.message);

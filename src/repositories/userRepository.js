@@ -1,11 +1,13 @@
+import { where } from "sequelize";
 import NotFoundError from "../exceptions/NotFoundError.js";
 import User from "../models/user.js"
+import AuthorizationError from "../exceptions/AuthorizationError.js";
 
 export default class UserRepository {
     static async createUser(userData) {
         const { fullname, username, password} = userData
-        const book = await User.create({ fullname, username, password });
-        return book;
+        const user = await User.create({ fullname, username, password });
+        return user;
         
     }
       
@@ -40,6 +42,15 @@ export default class UserRepository {
         }
         await user.destroy()
          
+    }
+
+    static async getPasswordByUsername(username){
+        const {dataValues:user} = await User.findOne({ where: { username } })
+        if (!user){
+            throw new AuthorizationError("credentials salah");            
+        }
+        return user
+
     }
 
 }
